@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 # ╔════════════════════════════════════════════════════════════════════════════════╗
 # ║              ANIME NEXUS - ADVANCED INTELLIGENCE & ANALYTICS PLATFORM              ║
-# ║              "Intelligent Analytics for the Anime Entertainment Era"              ║
+# ║                   "Advancing Human Civilization Through Data"                  ║
 # ╚════════════════════════════════════════════════════════════════════════════════╝
 
 # Page configuration
@@ -441,7 +441,7 @@ with col1:
         yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(0, 255, 136, 0.1)', title='COUNT'),
         hovermode='x unified'
     )
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width='stretch')
 
 # Chart 2: Type Distribution (Green/Cyan)
 with col2:
@@ -481,6 +481,10 @@ col1, col2 = st.columns(2)
 with col1:
     scatter_df = filtered_df.dropna(subset=['episodes', 'score', 'members'])
     if len(scatter_df) > 0:
+        # Replace episodes NaN with a default value for sizing
+        scatter_df = scatter_df.copy()
+        scatter_df['episodes'] = scatter_df['episodes'].fillna(scatter_df['episodes'].median())
+        
         fig3 = px.scatter(
             scatter_df,
             x='members',
@@ -502,7 +506,7 @@ with col1:
             yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(0, 255, 136, 0.1)', title='SCORE'),
             hovermode='closest'
         )
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width='stretch')
 
 # Chart 4: Episodes vs Score
 with col2:
@@ -528,7 +532,7 @@ with col2:
             yaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(0, 255, 136, 0.1)', title='SCORE'),
             hovermode='closest'
         )
-        st.plotly_chart(fig4, use_container_width=True)
+        st.plotly_chart(fig4, width='stretch')
 
 st.markdown("---")
 
@@ -597,7 +601,7 @@ if not yearly_data.empty:
         showlegend=True,
         legend=dict(font=dict(color='#e8f4f8'))
     )
-    st.plotly_chart(fig5, use_container_width=True)
+    st.plotly_chart(fig5, width='stretch')
 
 st.markdown("---")
 
@@ -637,7 +641,7 @@ with col1:
             xaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(0, 255, 136, 0.1)'),
             yaxis=dict(showgrid=False)
         )
-        st.plotly_chart(fig6, use_container_width=True)
+        st.plotly_chart(fig6, width='stretch')
 
 with col2:
     if not type_members.empty:
@@ -660,7 +664,7 @@ with col2:
             xaxis=dict(showgrid=True, gridwidth=1, gridcolor='rgba(0, 255, 136, 0.1)'),
             yaxis=dict(showgrid=False)
         )
-        st.plotly_chart(fig7, use_container_width=True)
+        st.plotly_chart(fig7, width='stretch')
 
 st.markdown("---")
 
@@ -703,7 +707,7 @@ st.dataframe(
         'members': '👥 MEMBERS',
         'popularity': '🔥 POPULARITY'
     }),
-    use_container_width=True,
+    width='stretch',
     height=400
 )
 
@@ -722,7 +726,7 @@ st.markdown("""
         <p style='color: #ffff00; font-weight: 900; font-size: 1.2em; letter-spacing: 3px; 
                   text-shadow: 0 0 15px #ffff00, 0 0 30px #ff3333; margin: 0;
                   text-transform: uppercase;'>
-        🚀 ANIME NEXUS v2026.01 - POWERED BY ARTIFICIAL INTELLIGENCE 🚀</p>
+        🚀 ANIME NEXUS v2026.01 - POWERED BY DEV SHAIKH X 🚀</p>
         <p style='color: #00ff88; font-size: 0.95em; margin-top: 15px; letter-spacing: 1px;
                   text-shadow: 0 0 10px #00ff88; font-weight: 700;'>
         "Making Entertainment Data Transparent & Accessible for Everyone"</p>
@@ -733,5 +737,9 @@ st.markdown("""
         © 2026 NEXUS INTELLIGENCE SYSTEMS | System Status: <span style="color: #00ff88; text-shadow: 0 0 8px #00ff88;">✅ FULLY OPERATIONAL</span></p>
         <p style='color: #ffaa00; font-size: 0.85em; margin-top: 10px; letter-spacing: 0.5px;'>
         🌟 Transforming Anime Analytics into Rocket Science 🌟</p>
+        <hr style='border: 1px solid #00ff88; margin: 15px 0;'>
+        <p style='color: #00ff88; font-weight: 900; font-size: 0.95em; margin: 10px 0; letter-spacing: 2px;
+                  text-shadow: 0 0 10px #00ff88;'>
+        ⚡ POWERED BY DEV SHAIKH X ⚡</p>
     </div>
 """, unsafe_allow_html=True)
